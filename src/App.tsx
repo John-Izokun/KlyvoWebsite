@@ -3,12 +3,13 @@ import { useMemo } from 'react'
 import { parseParams } from './lib/params'
 import { formatInTimeZone } from './lib/time'
 import { buildCalendarLinks } from './lib/calendar'
-import { CheckCircle, Calendar, Clock, MapPin, Phone, LinkedIn, CalDotCom, GoogleSheets } from './components/Icons'
+import { CheckCircle, Calendar, Clock, MapPin, Phone, LinkedIn } from './components/Icons'
 import { Countdown } from './components/Countdown'
 import MiniCalendar from './components/MiniCalendar'
 import FloatingBadges from './components/FloatingBadges'
 
 export default function App() {
+  React.useEffect(() => { document.title = 'The "Intent-Based" Client Pipeline — Klyvo AI' }, [])
   const params = useMemo(() => parseParams(window.location.search), [])
 
   const title = 'The "Intent-Based" Client Pipeline'
