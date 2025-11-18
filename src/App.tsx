@@ -5,6 +5,7 @@ import { formatInTimeZone } from './lib/time'
 import { buildCalendarLinks } from './lib/calendar'
 import { CheckCircle, Calendar, Clock, MapPin, Phone } from './components/Icons'
 import { Countdown } from './components/Countdown'
+import MiniCalendar from './components/MiniCalendar'
 
 export default function App() {
   const params = useMemo(() => parseParams(window.location.search), [])
@@ -59,6 +60,7 @@ export default function App() {
             {start && <span className="pill">Upcoming</span>}
             {start && <Countdown to={start} />}
             <a className="btn primary outline" href={bookingLink} target="_blank" rel="noreferrer">Book with me</a>
+            <a className="btn outline gold" href="https://docs.google.com/spreadsheets/d/1dQw7LIhuWpIBpK7dW6pZ3ou51d4zNIIwiDGDkezcg1Y/edit?usp=sharing" target="_blank" rel="noreferrer">Case studies</a>
           </div>
         </div>
       </header>
@@ -112,11 +114,14 @@ export default function App() {
 
         <section className="card gold-border">
           <h3>Need a different time?</h3>
+          <MiniCalendar onSelect={() => {
+            window.open(bookingLink, '_blank', 'noopener,noreferrer')
+          }} />
           {params.reschedule_url ? (
-            <p><a className="btn outline gold" href={params.reschedule_url}>Reschedule</a></p>
+            <p style={{ marginTop: 12 }}><a className="btn outline gold" href={params.reschedule_url}>Reschedule</a></p>
           ) : (
-            <p>
-              Choose a new slot:
+            <p style={{ marginTop: 12 }}>
+              Or choose a new slot:
               {' '}<a className="btn outline gold" href={bookingLink} target="_blank" rel="noreferrer">Book with me</a>
             </p>
           )}
