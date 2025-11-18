@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointment Confirmation (No-Install)</title>
+    <meta name="description" content="Appointment confirmation and prep page" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./styles.css">
+    <!-- React UMD + Babel for in-browser JSX transpile (no build tools required) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-presets="env,react">
+      const { useMemo } = React;
+
+      function parseParams(search) {
+        const out = {};
+        const usp = new URLSearchParams(search.startsWith('?') ? search : `?${search}`);
+        usp.forEach((value, key) => { out[key] = value; });
+        return out;
+      }
+
+      function pad(n, w = 2){ return String(n).padStart(w,'0'); }
+      function toZ(dt){
+        const yyyy = dt.getUTCFullYear();
+        const mm = pad(dt.getUTCMonth()+1);
+        const dd = pad(dt.getUTCDate());
+        const hh = pad(dt.getUTCHours());
+        const mi = pad(dt.getUTCMinutes());
+        const ss = pad(dt.getUTCSeconds());
+        return `${yyyy}${mm}${dd}T${hh}${mi}${ss}Z`;
+      }
+      function patternToOptions(pattern){
+        const options = {};
+        if (pattern.includes('EEEE')) options.weekday = 'long';
+        if (pattern.includes('MMM')) options.month = 'short';
+        if (pattern.includes('MMMM')) options.month = 'long';
+        if (pattern.includes('yyyy')) options.year = 'numeric';
+        if (/(\\bd\\b| d[, ]| d$)/.test(pattern) || pattern.includes(' d')) options.day = 'numeric';
+        if (pattern.includes('h')) options.hour = 'numeric';
+        if (pattern.includes('mm')) options.minute = '2-digit';
+        if (pattern.includes('a')) options.hour12 = true;
+        return options;
+      }
+      function formatInTimeZone(date, timeZone, fmt){
+        const opts = typeof fmt === 'string' ? patternToOptions(fmt) : fmt;
+        return new Intl.DateTimeFormat(undefined, { timeZone, ...opts }).format(date);
+      }
+      function escapeICSText(text){
+        return text.replace(/\\\\/g,'\\\\').replace(/\n/g,'\\n').replace(/[,;]/g, m => `\\${m}`);
+      }
+      function buildICS({ title, description, start, end, tz, location }){
+        const uid = `${Date.now()}@local`;
+        const dtstamp = toZ(new Date());
+        const dtStart = start ? toZ(start) : '';
+        const dtEnd = end ? toZ(end) : '';
+        const lines = [
+          'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Rovo Dev//Appointment Landing//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH','BEGIN:VEVENT',
+          `UID:${uid}`,`DTSTAMP:${dtstamp}`,
+          dtStart ? `DTSTART:${dtStart}` : '',
+          dtEnd ? `DTEND:${dtEnd}` : '',
+          `SUMMARY:${escapeICSText(title)}`,
+          description ? `DESCRIPTION:${escapeICSText(description)}` : '',
+          location ? `LOCATION:${escapeICSText(location)}` : '',
+          'END:VEVENT','END:VCALENDAR'
+        ].filter(Boolean);
+        return lines.join('\r\n');
+      }
+      function buildCalendarLinks({ title, description = '', start, end, tz, location = '' }){
+        const safeTitle = title || 'Event';
+        const startZ = start ? toZ(start) : '';
+        const endZ = end ? toZ(end) : '';
+        const gcal = new URL('https://calendar.google.com/calendar/render');
+        gcal.searchParams.set('action','TEMPLATE');
+        gcal.searchParams.set('text', safeTitle);
+        if (startZ && endZ) gcal.searchParams.set('dates', `${startZ}/${endZ}`);
+        if (location) gcal.searchParams.set('location', location);
+        if (description) gcal.searchParams.set('details', description);
+        const ics = buildICS({ title: safeTitle, description, start, end, tz, location });
+        const icsHref = `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`;
+        return { google: gcal.toString(), ics: icsHref };
+      }
+
+      function Icon({ path, children }){
+        return (
+          <svg viewBox="0 0 24 24" width={20} height={20} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            {children}
+          </svg>
+        )
+      }
+      const ICalendar = () => (
+        <Icon><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></Icon>
+      );
+      const IClock = () => (
+        <Icon><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></Icon>
+      );
+      const IMapPin = () => (
+        <Icon><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></Icon>
+      );
+      const IPhone = () => (
+        <Icon><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.66 12.66 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8 9a16 16 0 0 0 6 6l.36-.36a2 2 0 0 1 2.11-.45 12.66 12.66 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></Icon>
+      );
+      const ICheckCircle = () => (
+        <Icon><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></Icon>
+      );
+
+      function App(){
+        const params = useMemo(() => parseParams(window.location.search), []);
+        const title = params.event_type_name ?? 'Strategy Call';
+        const host = params.assigned_to ?? 'Your Host';
+        const invitee = params.invitee_full_name ?? 'Valued Guest';
+        const email = params.invitee_email;
+        const tz = params.timeZone ?? Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const startISO = params.event_start_time;
+        const endISO = params.event_end_time;
+        const start = startISO ? new Date(startISO) : null;
+        const end = endISO ? new Date(endISO) : null;
+        const dateLine = start ? formatInTimeZone(start, tz, 'EEEE, MMM d, yyyy') : 'Date TBA';
+        const timeLine = (start && end) ? `${formatInTimeZone(start, tz, 'h:mm a')} - ${formatInTimeZone(end, tz, 'h:mm a')} (${tz})` : 'Time TBA';
+        const location = params.meeting_location || 'Zoom (link by email)';
+        const phone = params.text_reminder_number || params.answer_1;
+        const bookingLink = params.booking_link || 'https://cal.com/johnizokun-klyvo/intro-call-40min';
+        const calendar = useMemo(() => buildCalendarLinks({
+          title,
+          description: `Call with ${host}${invitee ? ` and ${invitee}` : ''}`,
+          start, end, tz, location
+        }), [title, host, invitee, start?.toISOString?.(), end?.toISOString?.(), tz, location]);
+
+        return (
+          <div className="page">
+            <header className="hero"><div className="hero-inner"><h1>{title}</h1><p className="subtitle">Confirmed with {host}</p></div></header>
+            <main className="container">
+              <section className="card highlight">
+                <div className="row">
+                  <div className="col">
+                    <div className="fact"><ICalendar /> <span>{dateLine}</span></div>
+                    <div className="fact"><IClock /> <span>{timeLine}</span></div>
+                    <div className="fact"><IMapPin /> <span>{location}</span></div>
+                    {phone && <div className="fact"><IPhone /> <span>SMS: {phone}</span></div>}
+                  </div>
+                  <div className="col actions">
+                    <a className="btn primary" href={calendar.google} target="_blank" rel="noreferrer">Add to Google</a>
+                    <a className="btn" href={calendar.ics} target="_blank" rel="noreferrer">Download .ics</a>
+                    <a className="btn" href={bookingLink} target="_blank" rel="noreferrer">Book another time</a>
+                  </div>
+                </div>
+              </section>
+              <section className="card">
+                <h2>You're booked, {invitee}!</h2>
+                {email && <p>We've sent a confirmation to {email}. Please check your inbox and calendar.</p>}
+                <ul className="checklist">
+                  <li><ICheckCircle /> Join from a quiet place with reliable internet</li>
+                  <li><ICheckCircle /> Prepare any questions you want answered</li>
+                  <li><ICheckCircle /> Arrive 2–3 minutes early</li>
+                </ul>
+              </section>
+              <section className="card">
+                <h3>Reschedule or book another time</h3>
+                {params.reschedule_url ? (
+                  <p><a href={params.reschedule_url}>Reschedule here</a></p>
+                ) : (
+                  <p>If you need to make changes, reply to the confirmation email. Or pick a new slot here: <a href={bookingLink} target="_blank" rel="noreferrer">{bookingLink}</a></p>
+                )}
+              </section>
+            </main>
+            <footer className="footer"><p>Powered by your brand. All rights reserved.</p></footer>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App/>);
+    </script>
+  </body>
+</html>

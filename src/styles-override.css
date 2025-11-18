@@ -1,0 +1,51 @@
+/* Klyvo AI Black & Gold theme overrides */
+:root{
+  --bg: #000000;
+  --card: #0b0b0b;
+  --text: #e9e6d7; /* warm white */
+  --muted: #b9b29f;
+  --gold: #c9a227;
+  --gold-2: #f4d35e;
+}
+
+body{ background: radial-gradient(1200px 600px at 10% -20%, rgba(201,162,39,.12) 0%, transparent 60%),
+                     radial-gradient(1000px 500px at 120% 10%, rgba(244,211,94,.10) 0%, transparent 60%),
+                     var(--bg); color: var(--text) }
+
+.card{ background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)); border: 1px solid rgba(201,162,39,.35); backdrop-filter: blur(6px) }
+.card.highlight{ border-color: rgba(201,162,39,.55); box-shadow: 0 12px 40px rgba(201,162,39,.12) }
+.actions{ flex-wrap: wrap }
+.fact.small{ color: var(--muted); font-size: 14px }
+
+/* Buttons */
+.btn{ cursor: pointer; transition: transform .08s ease, filter .2s ease }
+.btn:active{ transform: translateY(1px) }
+.btn.primary.gold{ background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #0d0d0d; border: none; font-weight:700 }
+.btn.outline.gold{ background: transparent; border: 1px solid var(--gold); color: var(--text) }
+.btn.primary.outline{ background: transparent; border: 1px solid var(--gold); color: var(--text) }
+
+/* Hero */
+.hero{ position: relative; overflow: hidden; padding: 56px 16px 28px }
+.hero-bg{ position:absolute; inset:-20% -40% auto -40%; height: 260px; background: radial-gradient(600px 200px at 20% 30%, rgba(201,162,39,.25), transparent 60%), radial-gradient(500px 200px at 80% 20%, rgba(244,211,94,.2), transparent 60%); filter: blur(30px); pointer-events:none }
+.title-row{ display:flex; gap:14px; align-items:center }
+.title-row .avatar{ font-size: 22px; letter-spacing: 1px }
+.avatar{ width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background: linear-gradient(135deg, var(--gold), var(--gold-2)); color:#0b0b0b; font-weight:800; box-shadow: 0 0 0 2px rgba(201,162,39,.5) inset, 0 0 22px rgba(201,162,39,.55), 0 0 44px rgba(244,211,94,.35); text-shadow: 0 0 8px rgba(0,0,0,.5); }
+.hero-meta{ margin-top: 10px; display:flex; gap:10px; align-items:center }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; background: rgba(255,255,255,.06); color: var(--text); border: 1px solid rgba(255,255,255,.2); font-size: 12px }
+.pill-muted{ background: rgba(255,255,255,.04); color: var(--muted) }
+
+/* Video card */
+.video-card{ display:block }
+.video-frame{ aspect-ratio: 1 / 1; width: 100%; border-radius: 16px; overflow: hidden; background: #000; border: 1px solid rgba(201,162,39,.35); box-shadow: 0 10px 40px rgba(0,0,0,.6) }
+.gold-border{ border-color: rgba(201,162,39,.55) }
+
+.bottom-actions{ max-width: 1000px; margin: 0 auto; padding: 0 16px 8px; display:flex; justify-content: flex-end }
+
+/* Klyvo AI watermark in hero */
+.brand-watermark::before{
+  content: 'Klyvo AI';
+  position: absolute; inset: 0; display:flex; align-items:center; justify-content:center;
+  font-size: clamp(48px, 10vw, 120px); font-weight: 900; letter-spacing: 0.08em;
+  color: rgba(201,162,39,.06); pointer-events:none; user-select:none; mix-blend-mode: overlay; z-index: 0;
+}
+.hero .hero-inner{ position: relative; z-index: 1 }
