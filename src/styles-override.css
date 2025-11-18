@@ -23,9 +23,13 @@ body{ background: radial-gradient(1200px 600px at 10% -20%, rgba(201,162,39,.12)
 .btn{ cursor: pointer; transition: transform .08s ease, filter .2s ease }
 .btn:active{ transform: translateY(1px) }
 .btn.primary.gold{ background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #0d0d0d; border: none; font-weight:700; box-shadow: 0 0 0 1px rgba(201,162,39,.35) inset, 0 0 16px rgba(201,162,39,.22) }
-.btn.primary.gold:hover{ box-shadow: 0 0 0 1px rgba(201,162,39,.45) inset, 0 0 22px rgba(201,162,39,.28) }
+.btn.primary.gold:hover{ box-shadow: 0 0 0 2px rgba(201,162,39,.60) inset, 0 0 32px rgba(201,162,39,.45), 0 0 64px rgba(244,211,94,.35); filter: brightness(1.12) }
 .btn.outline.gold{ background: transparent; border: 1px solid var(--gold); color: var(--text) }
 .btn.primary.outline{ background: transparent; border: 1px solid var(--gold); color: var(--text) }
+/* Global hover glow for all buttons */
+.btn:hover{ filter: brightness(1.08); box-shadow: 0 0 16px rgba(201,162,39,.22) }
+.btn.outline.gold:hover{ border-color: rgba(201,162,39,.8); box-shadow: 0 0 18px rgba(201,162,39,.26) }
+.btn:focus-visible{ outline: 2px solid rgba(201,162,39,.7); outline-offset: 2px }
 
 /* Hero */
 .hero{ position: relative; overflow: hidden; padding: 56px 16px 28px }

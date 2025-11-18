@@ -55,7 +55,7 @@ export default function App() {
             <div className="avatar" aria-hidden title="Klyvo AI">K</div>
             <div>
               <h1>{title}</h1>
-              <p className="subtitle">Your host is John Izokun, Lead Engineer</p>
+              <p className="subtitle">Your host is John Izokun | Klyvo AI</p>
             </div>
           </div>
           <div className="hero-meta">
