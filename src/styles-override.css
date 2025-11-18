@@ -20,7 +20,8 @@ body{ background: radial-gradient(1200px 600px at 10% -20%, rgba(201,162,39,.12)
 /* Buttons */
 .btn{ cursor: pointer; transition: transform .08s ease, filter .2s ease }
 .btn:active{ transform: translateY(1px) }
-.btn.primary.gold{ background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #0d0d0d; border: none; font-weight:700 }
+.btn.primary.gold{ background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #0d0d0d; border: none; font-weight:700; box-shadow: 0 0 0 1px rgba(201,162,39,.35) inset, 0 0 16px rgba(201,162,39,.22) }
+.btn.primary.gold:hover{ box-shadow: 0 0 0 1px rgba(201,162,39,.45) inset, 0 0 22px rgba(201,162,39,.28) }
 .btn.outline.gold{ background: transparent; border: 1px solid var(--gold); color: var(--text) }
 .btn.primary.outline{ background: transparent; border: 1px solid var(--gold); color: var(--text) }
 

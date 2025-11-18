@@ -59,8 +59,9 @@ export default function App() {
           <div className="hero-meta">
             {start && <span className="pill">Upcoming</span>}
             {start && <Countdown to={start} />}
-            <a className="btn primary outline" href={bookingLink} target="_blank" rel="noreferrer">Book with me</a>
+            <a className="btn primary gold" href={bookingLink} target="_blank" rel="noreferrer">Book with me</a>
             <a className="btn outline gold" href="https://docs.google.com/spreadsheets/d/1dQw7LIhuWpIBpK7dW6pZ3ou51d4zNIIwiDGDkezcg1Y/edit?usp=sharing" target="_blank" rel="noreferrer">Case studies</a>
+            <a className="btn outline gold" href="https://www.linkedin.com/in/john-izokun-073012253/" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
         </div>
       </header>
