@@ -9,7 +9,7 @@ import { Countdown } from './components/Countdown'
 export default function App() {
   const params = useMemo(() => parseParams(window.location.search), [])
 
-  const title = 'Growth strategy Call CTA'
+  const title = 'The "Intent-Based" Client Pipeline'
   const host = params.assigned_to ?? 'Your Host'
   const invitee = params.invitee_full_name ?? 'Valued Guest'
   const email = params.invitee_email
