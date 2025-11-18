@@ -3,9 +3,10 @@ import { useMemo } from 'react'
 import { parseParams } from './lib/params'
 import { formatInTimeZone } from './lib/time'
 import { buildCalendarLinks } from './lib/calendar'
-import { CheckCircle, Calendar, Clock, MapPin, Phone } from './components/Icons'
+import { CheckCircle, Calendar, Clock, MapPin, Phone, LinkedIn, CalDotCom, GoogleSheets } from './components/Icons'
 import { Countdown } from './components/Countdown'
 import MiniCalendar from './components/MiniCalendar'
+import FloatingBadges from './components/FloatingBadges'
 
 export default function App() {
   const params = useMemo(() => parseParams(window.location.search), [])
@@ -61,10 +62,11 @@ export default function App() {
             {start && <Countdown to={start} />}
             <a className="btn primary gold" href={bookingLink} target="_blank" rel="noreferrer">Book with me</a>
             <a className="btn outline gold" href="https://docs.google.com/spreadsheets/d/1dQw7LIhuWpIBpK7dW6pZ3ou51d4zNIIwiDGDkezcg1Y/edit?usp=sharing" target="_blank" rel="noreferrer">Case studies</a>
-            <a className="btn outline gold" href="https://www.linkedin.com/in/john-izokun-073012253/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a className="btn outline gold" href="https://www.linkedin.com/in/john-izokun-073012253/" target="_blank" rel="noreferrer"><LinkedIn /> LinkedIn</a>
           </div>
         </div>
       </header>
+      <FloatingBadges to={bookingLink} />
 
       <main className="container">
         <section className="card video-card gold-border">

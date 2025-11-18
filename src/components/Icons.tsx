@@ -35,3 +35,27 @@ export const CheckCircle = (props: React.SVGProps<SVGSVGElement>) => (
     <polyline points="22 4 12 14.01 9 11.01"></polyline>
   </svg>
 )
+
+export const LinkedIn = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" width={18} height={18} fill="currentColor" aria-hidden {...props}>
+    <path d="M20 0H4C1.8 0 0 1.8 0 4v16c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4V4c0-2.2-1.8-4-4-4zM7 20H4V9h3v11zM5.5 7.7c-1 0-1.7-.8-1.7-1.7 0-1 .8-1.7 1.7-1.7s1.7.8 1.7 1.7c0 .9-.7 1.7-1.7 1.7zM20 20h-3v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20h-3V9h2.9v1.5h.1c.4-.7 1.4-1.5 2.8-1.5 3 0 3.5 2 3.5 4.7V20z" />
+  </svg>
+)
+
+export const CalDotCom = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" width={18} height={18} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden {...props}>
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="currentColor" opacity="0.08" />
+    <path d="M16.5 15.2c-.9 1.1-2.1 1.8-3.7 1.8-2.9 0-5.1-2.2-5.1-5s2.2-5 5.1-5c1.6 0 2.9.7 3.8 1.8" />
+  </svg>
+)
+
+export const GoogleSheets = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden {...props}>
+    <path fill="currentColor" opacity="0.1" d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/>
+    <path fill="currentColor" d="M13 2v5h5"/>
+    <rect x="7" y="10" width="10" height="7" rx="2" ry="2" fill="none" stroke="currentColor" strokeWidth="1.6"/>
+    <line x1="12" y1="10" x2="12" y2="17" stroke="currentColor" strokeWidth="1.2"/>
+    <line x1="7" y1="12.5" x2="17" y2="12.5" stroke="currentColor" strokeWidth="1.2"/>
+    <line x1="7" y1="15" x2="17" y2="15" stroke="currentColor" strokeWidth="1.2"/>
+  </svg>
+)
