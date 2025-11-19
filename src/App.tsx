@@ -89,7 +89,7 @@ export default function App() {
             <iframe
               width="100%"
               height="100%"
-              src="https://www.loom.com/embed/82d5fd893d6a42ac8892b998d7d82cce"
+              src="https://www.loom.com/embed/82d5fd893d6a42ac8892b998d7d82cce?autoplay=1&muted=1"
               title="Klyvo AI — Loom Overview"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
