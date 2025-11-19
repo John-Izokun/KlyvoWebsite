@@ -9,10 +9,10 @@ import MiniCalendar from './components/MiniCalendar'
 import FloatingBadges from './components/FloatingBadges'
 
 export default function App() {
-  React.useEffect(() => { document.title = 'The "Intent-Based" Client Pipeline Video — Klyvo AI' }, [])
+  React.useEffect(() => { document.title = 'A 5-minute breakdown of the Intent-Based AI System for Recruitment Firms — Klyvo AI' }, [])
   const params = useMemo(() => parseParams(window.location.search), [])
 
-  const title = 'The "Intent-Based" Client Pipeline Video'
+  const title = 'A 5-minute breakdown of the Intent-Based AI System for Recruitment Firms'
   const host = params.assigned_to ?? 'Your Host'
   const invitee = params.invitee_full_name ?? 'Valued Guest'
   const email = params.invitee_email
