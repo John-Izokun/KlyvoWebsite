@@ -74,7 +74,16 @@ export default function App() {
           <div className="stars" aria-label="5 out of 5 stars" title="5 out of 5 stars">
             <span aria-hidden>★</span><span aria-hidden>★</span><span aria-hidden>★</span><span aria-hidden>★</span><span aria-hidden>★</span>
           </div>
-          <div className="reviews" aria-hidden>5/5 from 47 reviews</div>
+          <div className="rating-row">
+            <div className="avatar-stack" aria-hidden>
+              <img className="avatar" src="https://i.pravatar.cc/48?img=5" alt="Reviewer 1" loading="lazy"/>
+              <img className="avatar" src="https://i.pravatar.cc/48?img=15" alt="Reviewer 2" loading="lazy"/>
+              <img className="avatar" src="https://i.pravatar.cc/48?img=25" alt="Reviewer 3" loading="lazy"/>
+              <img className="avatar" src="https://i.pravatar.cc/48?img=35" alt="Reviewer 4" loading="lazy"/>
+              <img className="avatar" src="https://i.pravatar.cc/48?img=45" alt="Reviewer 5" loading="lazy"/>
+            </div>
+            <div className="reviews" aria-hidden>5/5 from 47 reviews</div>
+          </div>
           <div className="video-frame">
             <iframe
               width="100%"

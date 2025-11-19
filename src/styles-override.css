@@ -59,6 +59,11 @@ body{ background: radial-gradient(1200px 600px at 10% -20%, rgba(201,162,39,.12)
 
 /* Video card */
 .stars{ display:flex; justify-content:center; gap:6px; font-size: 28px; line-height:1; color: var(--gold); margin-bottom: 6px }
+.rating-row{ display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom: 12px }
+.avatar-stack{ display:flex; align-items:center }
+.avatar-stack .avatar{ width:22px; height:22px; border-radius:50%; border:1.5px solid #0b0b0b; object-fit:cover; box-shadow: 0 0 0 1px rgba(201,162,39,.35); margin-left:-8px }
+.avatar-stack .avatar:first-child{ margin-left:0 }
+.reviews{ text-align:center; color: var(--muted); margin-bottom: 0; font-weight: 600 }
 .stars span{ filter: drop-shadow(0 0 6px rgba(201,162,39,.35)); }
 .reviews{ text-align:center; color: var(--muted); margin-bottom: 12px; font-weight: 600 }
 .video-card{ display:block }
