@@ -113,7 +113,7 @@ export default function App() {
               )}
             </div>
             <div className="col actions">
-              <a className="btn primary gold" href={bookingLink} target="_blank" rel="noreferrer">Add to Google</a>
+              <a className="btn primary gold" href={bookingLink} target="_blank" rel="noreferrer">Add to your calendar</a>
               <a className="btn outline gold" href={bookingLink} target="_blank" rel="noreferrer">Apple/Outlook (.ics)</a>
               <button className="btn outline gold" onClick={() => {
                 const lines = [
@@ -125,7 +125,7 @@ export default function App() {
                 ].filter(Boolean).join('\n')
                 navigator.clipboard.writeText(lines)
               }}>Copy details</button>
-              <a className="btn primary gold" href={bookingLink} target="_blank" rel="noreferrer">Book with me</a>
+              <a className="btn primary gold" href={bookingLink} target="_blank" rel="noreferrer">See How It Fits Your Workflow</a>
             </div>
           </div>
         </section>
