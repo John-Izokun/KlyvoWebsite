@@ -71,6 +71,10 @@ export default function App() {
 
       <main className="container">
         <section className="card video-card gold-border">
+          <div className="stars" aria-label="5 out of 5 stars" title="5 out of 5 stars">
+            <span aria-hidden>★</span><span aria-hidden>★</span><span aria-hidden>★</span><span aria-hidden>★</span><span aria-hidden>★</span>
+          </div>
+          <div className="reviews" aria-hidden>5/5 from 47 reviews</div>
           <div className="video-frame">
             <iframe
               width="100%"

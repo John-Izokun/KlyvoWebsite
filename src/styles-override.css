@@ -58,6 +58,9 @@ body{ background: radial-gradient(1200px 600px at 10% -20%, rgba(201,162,39,.12)
 .mini-cal .mc-cell.today{ box-shadow: 0 0 0 2px rgba(201,162,39,.45) inset }
 
 /* Video card */
+.stars{ display:flex; justify-content:center; gap:6px; font-size: 28px; line-height:1; color: var(--gold); margin-bottom: 6px }
+.stars span{ filter: drop-shadow(0 0 6px rgba(201,162,39,.35)); }
+.reviews{ text-align:center; color: var(--muted); margin-bottom: 12px; font-weight: 600 }
 .video-card{ display:block }
 .video-frame{ aspect-ratio: 1 / 1; width: 100%; border-radius: 16px; overflow: hidden; background: #000; border: 1px solid rgba(201,162,39,.35); box-shadow: 0 10px 40px rgba(0,0,0,.6) }
 .gold-border{ border-color: rgba(201,162,39,.55) }
