@@ -146,12 +146,8 @@ export default function App() {
         </section>
       </main>
 
-     <div className="bottom-actions">
-       <a className="btn outline gold" href="https://klyvo.ca/" target="_blank" rel="noreferrer">Visit klyvo.ca</a>
-     </div>
-
       <footer className="footer">
-        <p>Powered by <a href="https://klyvo.ca/" target="_blank" rel="noreferrer">Klyvo AI</a> &copy;. A team of engineers. All rights reserved.</p>
+        <p>Powered by Klyvo AI &copy;. A team of engineers. All rights reserved.</p>
       </footer>
     </div>
   )
