@@ -7,6 +7,7 @@ import { CheckCircle, Calendar, Clock, MapPin, Phone, LinkedIn } from './compone
 import { Countdown } from './components/Countdown'
 import MiniCalendar from './components/MiniCalendar'
 import FloatingBadges from './components/FloatingBadges'
+import ScrollingLogos from './components/ScrollingLogos'
 
 export default function App() {
   React.useEffect(() => { document.title = 'A 5-minute breakdown of the Intent-Based AI System for Recruitment Firms — Klyvo AI' }, [])
@@ -71,6 +72,7 @@ export default function App() {
       <FloatingBadges to={bookingLink} />
 
       <main className="container">
+        <ScrollingLogos />
         <section className="card video-card gold-border">
           <div className="stars" aria-label="5 out of 5 stars" title="5 out of 5 stars">
             <span aria-hidden>★</span><span aria-hidden>★</span><span aria-hidden>★</span><span aria-hidden>★</span><span aria-hidden>★</span>

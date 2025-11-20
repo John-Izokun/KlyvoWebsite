@@ -79,6 +79,13 @@ body{ background: radial-gradient(1200px 600px at 10% -20%, rgba(201,162,39,.12)
 .float-badge:hover{ filter: brightness(1.1); border-color: rgba(201,162,39,.8) }
 @media (max-width: 820px){ .floating-badges{ display:none } }
 
+/* Scrolling logos */
+.scroll-logos{ overflow:hidden; position: relative; margin-top: 10px; }
+.scroll-track{ display:flex; gap: 18px; width:max-content; animation: scroll-left 28s linear infinite; padding: 8px 0; opacity:.9 }
+.scroll-item{ display:inline-flex; align-items:center; gap:8px; color: var(--muted); font-weight:600; font-size: 14px; white-space: nowrap }
+.scroll-item svg{ width: 28px; height: 28px; }
+@keyframes scroll-left{ 0%{ transform: translateX(0) } 100%{ transform: translateX(-50%) } }
+
 .brand-watermark::before{
   content: 'Klyvo AI';
   position: absolute; inset: 0; display:flex; align-items:center; justify-content:center;
