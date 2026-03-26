@@ -11,6 +11,9 @@
   "keywords": ["klyvo", "manufacturing", "b2b", "landing-page"],
   "author": "Klyvo Partners",
   "license": "ISC",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "dependencies": {
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
