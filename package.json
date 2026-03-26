@@ -1,22 +1,25 @@
 {
-  "name": "appointment-landing",
+  "name": "klyvo-partners-website",
   "version": "1.0.0",
-  "private": true,
+  "description": "High-converting B2B landing page for Klyvo Partners with an Industrial Fintech aesthetic",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
+  "keywords": ["klyvo", "manufacturing", "b2b", "landing-page"],
+  "author": "Klyvo Partners",
+  "license": "ISC",
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "vite": "^7.2.7"
   },
   "devDependencies": {
-    "@types/react": "^18.3.8",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.3",
-    "typescript": "^5.6.3",
-    "vite": "^5.4.9"
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "typescript": "^5.9.3"
   }
 }
